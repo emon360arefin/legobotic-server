@@ -48,6 +48,15 @@ async function run() {
             res.send(result)
         })
 
+        app.get('/toys/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = { selleremail: email };
+            const result = await toysCollection.findOne(query);
+            res.send(result)
+        })
+
+
+
         app.post('/toys', async (req, res) => {
             const toyForm = req.body;
             console.log(toyForm);
