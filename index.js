@@ -77,7 +77,8 @@ async function run() {
                     description: updatedToy.description
                 }
             };
-            const result = await toysCollection.updateOne(filter, toy, options)
+            const result = await toysCollection.updateOne(filter, toy, options);
+            res.send(result)
         })
 
         app.delete('/toy/:id', async (req, res) => {
