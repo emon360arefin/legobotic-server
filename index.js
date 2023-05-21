@@ -49,8 +49,8 @@ async function run() {
         })
 
         app.get('/limittoys', async (req, res) => {
-            const cursor = toysCollection.find().limit(3);
-            const result = await cursor.toArray();
+            const query = { selleremail: { $exists: true } };
+            const result = await toysCollection.find(query).limit(3).toArray();
             res.send(result)
         })
 
