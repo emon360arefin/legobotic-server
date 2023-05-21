@@ -50,7 +50,7 @@ async function run() {
 
         app.get('/limittoys', async (req, res) => {
             const query = { selleremail: { $exists: true } };
-            const result = await toysCollection.find(query).limit(3).toArray();
+            const result = await toysCollection.find(query).limit(20).toArray();
             res.send(result)
         })
 
