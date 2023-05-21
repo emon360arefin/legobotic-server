@@ -33,7 +33,14 @@ async function run() {
         // client.connect();
 
         const toysCollection = client.db("toysDB").collection("toys");
-        // const sellersCollection = client.db("toysDB").collection("sellertoys");
+        const sellersCollection = client.db("toysDB").collection("sellertoys");
+
+
+        app.get('/sellers', async(req, res) => {
+            const cursor = sellersCollection.find();
+            const result = await cursor.toArray();
+            res.send(result)
+        })
 
         app.get('/toys', async (req, res) => {
             const cursor = toysCollection.find();
