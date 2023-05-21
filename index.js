@@ -36,7 +36,7 @@ async function run() {
         const sellersCollection = client.db("toysDB").collection("sellertoys");
 
 
-        app.get('/sellers', async(req, res) => {
+        app.get('/sellers', async (req, res) => {
             const cursor = sellersCollection.find();
             const result = await cursor.toArray();
             res.send(result)
@@ -44,6 +44,12 @@ async function run() {
 
         app.get('/toys', async (req, res) => {
             const cursor = toysCollection.find();
+            const result = await cursor.toArray();
+            res.send(result)
+        })
+
+        app.get('/limittoys', async (req, res) => {
+            const cursor = toysCollection.find().limit(3);
             const result = await cursor.toArray();
             res.send(result)
         })
@@ -75,7 +81,7 @@ async function run() {
         app.put('/update/:id', async (req, res) => {
             const id = req.params.id;
             const filter = { _id: new ObjectId(id) };
-            const options = {upsert: true};
+            const options = { upsert: true };
             const updatedToy = req.body;
             const toy = {
                 $set: {
